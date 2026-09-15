@@ -1,0 +1,15 @@
+services:
+  college-portal-dev:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: "dev-only-secret"
+      DB_PATH: "/app/data/college.db"
+    volumes:
+      - .:/app
+      - college_dev_data:/app/data
+    command: python app.py
+
+volumes:
+  college_dev_data:

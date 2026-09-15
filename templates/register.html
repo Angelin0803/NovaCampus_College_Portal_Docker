@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Register Student | SRIT{% endblock %}
+{% block content %}
+<div class="page-head"><div><span class="eyebrow">STUDENT ONBOARDING</span><h1>Register a student</h1><p>Fields marked <b>*</b> are mandatory.</p></div><div class="step">01 <span>/</span> 01</div></div>
+<form method="post" class="panel form">
+  <div class="section-label">Identity & academics</div>
+  <div class="form-grid">
+    <label>Registration ID *<input name="reg_id" placeholder="SRIT26IT001" value="{{ data.get('reg_id','') }}" required></label>
+    <label>Full name *<input name="name" placeholder="Student full name" value="{{ data.get('name','') }}" required></label>
+    <label>Email *<input type="email" name="email" placeholder="student@college.edu" value="{{ data.get('email','') }}" required></label>
+    <label>Phone *<input name="phone" placeholder="+91 98765 43210" value="{{ data.get('phone','') }}" required></label>
+    <label>Department *<select name="department" required><option value="">Select department</option><option>Information Technology</option><option>Computer Science & Engineering</option><option>Artificial Intelligence & Data Science</option><option>Electronics & Communication</option><option>Mechanical Engineering</option></select></label>
+    <label>Year *<select name="year" required><option value="">Select year</option><option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option></select></label>
+    <label>Section *<select name="section" required><option value="">Select section</option><option>A</option><option>B</option><option>C</option></select></label>
+    <label>Date of birth<input type="date" name="dob" value="{{ data.get('dob','') }}"></label>
+    <label>Gender<select name="gender"><option value="">Prefer not to say</option><option>Female</option><option>Male</option><option>Other</option></select></label>
+  </div>
+  <div class="section-label">Contact identity</div>
+  <label>Address<textarea name="address" rows="3" placeholder="Residential address">{{ data.get('address','') }}</textarea></label>
+  <div class="form-footer"><span>All information is stored in the portal database.</span><button class="btn primary">Create student profile →</button></div>
+</form>
+{% endblock %}

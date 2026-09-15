@@ -1,0 +1,15 @@
+services:
+  college-portal:
+    build: .
+    container_name: college-portal
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: "college-portal-dev-secret"
+      DB_PATH: "/app/data/college.db"
+    volumes:
+      - college_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  college_data:
