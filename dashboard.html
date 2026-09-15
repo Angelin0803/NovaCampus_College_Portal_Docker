@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | NovaCampus{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><span class="eyebrow">{{ role|upper }} WORKSPACE</span><h1>Student directory</h1><p>Registered identities, academic standing and CGPA at a glance.</p></div>
+  {% if role == 'staff' %}<a class="btn primary" href="{{ url_for('register') }}">+ Register student</a>{% endif %}
+</div>
+<div class="stats">
+  <div><small>TOTAL STUDENTS</small><strong>{{ students|length }}</strong><span>Active records</span></div>
+  <div><small>AVERAGE CGPA</small><strong>{% if students %}{{ "%.2f"|format(students|map(attribute='cgpa')|sum / students|length) }}{% else %}0.00{% endif %}</strong><span>Across registered students</span></div>
+  <div><small>PORTAL STATUS</small><strong>LIVE</strong><span>Database connected</span></div>
+</div>
+<div class="toolbar"><input id="search" placeholder="⌕  Search name, registration ID or department..." oninput="filterStudents()"><select id="dept" onchange="filterStudents()"><option value="">All departments</option><option>Information Technology</option><option>Computer Science & Engineering</option><option>Artificial Intelligence & Data Science</option><option>Electronics & Communication</option><option>Mechanical Engineering</option></select></div>
+<div class="table-card">
+<table id="studentTable"><thead><tr><th>Student</th><th>Registration ID</th><th>Department</th><th>Year / Sec</th><th>CGPA</th><th>Identity</th></tr></thead>
+<tbody>
+{% for s in students %}
+<tr data-search="{{ (s.name ~ ' ' ~ s.reg_id ~ ' ' ~ s.department)|lower }}" data-dept="{{ s.department }}">
+<td><div class="student-name"><span class="avatar">{{ s.name[:1]|upper }}</span><div><b>{{ s.name }}</b><small>{{ s.email }}</small></div></div></td>
+<td><code>{{ s.reg_id }}</code></td><td>{{ s.department }}</td><td>Year {{ s.year }} · {{ s.section }}</td>
+<td><span class="cgpa {% if s.cgpa >= 8.5 %}high{% elif s.cgpa >= 6 %}mid{% endif %}">{{ "%.2f"|format(s.cgpa) }}</span></td>
+<td><a class="view" href="{{ url_for('student_profile', student_id=s.id) }}">View profile →</a></td>
+</tr>
+{% else %}<tr><td colspan="6" class="empty">No students registered yet. Create the first profile.</td></tr>{% endfor %}
+</tbody></table>
+</div>
+<script>
+function filterStudents(){
+ const q=document.getElementById('search').value.toLowerCase(), d=document.getElementById('dept').value;
+ document.querySelectorAll('#studentTable tbody tr[data-search]').forEach(r=>r.style.display=(r.dataset.search.includes(q)&&(d===''||r.dataset.dept===d))?'':'none');
+}
+</script>
+{% endblock %}
