@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Staff Login | NovaCampus{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+  <div class="auth-card">
+    <span class="eyebrow">AUTHORIZED ACCESS</span>
+    <h1>Staff sign in</h1>
+    <p class="muted">Access the academic control center.</p>
+    <form method="post" class="form">
+      <label>Username<input name="username" placeholder="admin" required></label>
+      <label>Password<input type="password" name="password" placeholder="••••••••" required></label>
+      <button class="btn primary full">Enter control center →</button>
+    </form>
+    <div class="demo-note">Demo: <b>admin</b> / <b>admin123</b></div>
+  </div>
+</div>
+{% endblock %}

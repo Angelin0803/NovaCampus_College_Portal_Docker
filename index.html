@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}NovaCampus | College Portal{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">SMART CAMPUS • STUDENT OPERATIONS</span>
+    <h1>One portal.<br><span>Every student.</span><br>Every result.</h1>
+    <p>A modern college management portal for registrations, academic records, staff mark entry and CGPA tracking — packaged and ready for Docker.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="{{ url_for('register') }}">Register a student →</a>
+      <a class="btn ghost" href="{{ url_for('login') }}">Staff access</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="mini-top"><span>ACADEMIC OVERVIEW</span><span class="live">● LIVE</span></div>
+    <div class="orb">N</div>
+    <h3>NovaCampus</h3>
+    <p>Unified student intelligence</p>
+    <div class="metric-row"><div><b>360°</b><small>Student profile</small></div><div><b>10.0</b><small>Max CGPA</small></div></div>
+  </div>
+</section>
+<section class="feature-grid">
+  <article><span class="icon">01</span><h3>Student Identity</h3><p>Registration ID, department, year, section and contact details in one verified profile.</p></article>
+  <article><span class="icon">02</span><h3>Marks & Grades</h3><p>Staff can enter marks by subject and instantly generate grades and CGPA.</p></article>
+  <article><span class="icon">03</span><h3>Docker + DevOps</h3><p>Containerized Flask backend with persistent SQLite storage and production Gunicorn.</p></article>
+</section>
+{% endblock %}

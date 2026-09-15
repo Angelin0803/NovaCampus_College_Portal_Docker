@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ student.name }} | NovaCampus{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('dashboard') }}">← Back to directory</a>
+<section class="profile-head">
+  <div class="big-avatar">{{ student.name[:1]|upper }}</div>
+  <div><span class="eyebrow">STUDENT PROFILE</span><h1>{{ student.name }}</h1><p><code>{{ student.reg_id }}</code> · {{ student.department }} · Year {{ student.year }} / {{ student.section }}</p></div>
+  <div class="cgpa-box"><small>CGPA</small><strong>{{ "%.2f"|format(cgpa) }}</strong><span>/ 10.00</span></div>
+</section>
+<div class="profile-grid">
+  <div class="panel"><div class="section-label">Identity</div><div class="identity-list">
+    <div><small>EMAIL</small><b>{{ student.email }}</b></div><div><small>PHONE</small><b>{{ student.phone }}</b></div>
+    <div><small>DATE OF BIRTH</small><b>{{ student.dob or '—' }}</b></div><div><small>GENDER</small><b>{{ student.gender or '—' }}</b></div>
+    <div class="wide"><small>ADDRESS</small><b>{{ student.address or '—' }}</b></div>
+  </div></div>
+  <div class="panel"><div class="section-label">Academic summary</div><div class="academic-summary"><strong>{{ marks|length }}</strong><span>Subjects recorded</span><hr><strong>{{ marks|selectattr('grade','ne','F')|list|length }}</strong><span>Subjects cleared</span></div></div>
+</div>
+<div class="table-card"><div class="table-title"><div><span class="eyebrow">ACADEMIC RECORD</span><h2>Grades & marks</h2></div></div>
+<table><thead><tr><th>Code</th><th>Subject</th><th>Credits</th><th>Marks</th><th>Grade</th></tr></thead><tbody>
+{% for m in marks %}<tr><td><code>{{ m.subject_code }}</code></td><td>{{ m.subject_name }}</td><td>{{ m.credits }}</td><td>{{ m.mark }}/100</td><td><span class="grade">{{ m.grade }}</span></td></tr>
+{% else %}<tr><td colspan="5" class="empty">No marks entered for this student yet.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}
