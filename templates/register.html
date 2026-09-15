@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Register Student | SRIT{% endblock %}
+{% block title %}Register Student | NovaCampus{% endblock %}
 {% block content %}
 <div class="page-head"><div><span class="eyebrow">STUDENT ONBOARDING</span><h1>Register a student</h1><p>Fields marked <b>*</b> are mandatory.</p></div><div class="step">01 <span>/</span> 01</div></div>
 <form method="post" class="panel form">
   <div class="section-label">Identity & academics</div>
   <div class="form-grid">
-    <label>Registration ID *<input name="reg_id" placeholder="SRIT26IT001" value="{{ data.get('reg_id','') }}" required></label>
+    <label>Registration ID *<input name="reg_id" placeholder="NovaCampus26IT001" value="{{ data.get('reg_id','') }}" required></label>
     <label>Full name *<input name="name" placeholder="Student full name" value="{{ data.get('name','') }}" required></label>
     <label>Email *<input type="email" name="email" placeholder="student@college.edu" value="{{ data.get('email','') }}" required></label>
     <label>Phone *<input name="phone" placeholder="+91 98765 43210" value="{{ data.get('phone','') }}" required></label>

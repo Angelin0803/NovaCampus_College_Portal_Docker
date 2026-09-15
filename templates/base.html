@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}SRIT{% endblock %}</title>
+  <title>{% block title %}NovaCampus{% endblock %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">N</span><span>SRIT</span></a>
+  <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">N</span><span>NovaCampus</span></a>
   <nav>
     {% if session.get('user_id') %}
       <a href="{{ url_for('dashboard') }}">Dashboard</a>
@@ -30,6 +30,6 @@
   {% endwith %}
   {% block content %}{% endblock %}
 </main>
-<footer>SRIT • College Portal • Dockerized DevOps-ready application</footer>
+<footer>NovaCampus • College Portal • Dockerized DevOps-ready application</footer>
 </body>
 </html>

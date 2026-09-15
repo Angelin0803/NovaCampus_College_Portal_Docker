@@ -1,4 +1,4 @@
-# SRIT — Dockerized College Portal
+# NovaCampus — Dockerized College Portal
 
 A polished college portal built with **Flask + SQLite + HTML/CSS/JS + Docker**.
 
